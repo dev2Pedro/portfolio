@@ -65,52 +65,22 @@ export const experience: ExperienceItem[] = [
 
 export const projects: ProjectItem[] = [
   {
-    name: 'ServAuth (SSO)',
-    description: 'Módulo de autenticação centralizada da Servfaz — middleware JWT, refresh token, auditoria/logs.',
-    stack: ['AdonisJS', 'JWT', 'PostgreSQL'],
-    internal: true,
-  },
-  {
-    name: 'Conecta',
-    description: 'Sistema interno de gestão de frota e reservas, com app mobile de notificações.',
-    stack: ['Node.js', 'Express', 'Prisma', 'React', 'React Native'],
-    internal: true,
-  },
-  {
-    name: 'Odoo/CRM',
-    description: 'Customização do ERP Odoo 18: anexos em S3/MinIO, localização fiscal, dashboard de KPIs.',
-    stack: ['Python', 'Odoo'],
-    internal: true,
-  },
-  {
-    name: 'Automações eSocial/FGTS/Edenred/Unico',
-    description: 'RPA em Python/Selenium para portais externos de RH e operações.',
-    stack: ['Python', 'Selenium'],
-    internal: true,
-  },
-  {
     name: 'Upload.ai',
-    description: 'Transcrição de vídeo com Whisper Large v3 (via Groq) e geração de resumos/títulos por IA.',
-    stack: ['React', 'Node.js', 'Fastify', 'Prisma'],
-    url: 'https://github.com/dev2Pedro',
-  },
-  {
-    name: 'Habits',
-    description: 'Clone de app de tracking de hábitos com heatmap de progresso — monorepo mobile/web/server.',
-    stack: ['React Native', 'Expo', 'React', 'Fastify', 'Prisma'],
-    url: 'https://github.com/dev2Pedro',
+    description: 'Transcrição de vídeo com IA (Whisper via Groq) e geração automática de resumos e títulos. Processamento de vídeo no navegador com FFmpeg, back-end em Fastify + Prisma.',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Prisma'],
+    url: 'https://github.com/dev2Pedro/upload.ai',
   },
   {
     name: 'Christmas Elderly/API',
-    description: 'Sistema de apadrinhamento natalino de idosos, em parceria com a turma de Psicologia da Unisociesc-Blumenau.',
-    stack: ['Fastify', 'Prisma', 'PostgreSQL', 'Supabase', 'Next.js'],
-    url: 'https://github.com/dev2Pedro',
+    description: 'Sistema de apadrinhamento natalino de idosos, em parceria com a turma de Psicologia da Unisociesc-Blumenau. Área administrativa autenticada, back-end em Fastify/Prisma/PostgreSQL (Supabase).',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Fastify', 'PostgreSQL'],
+    url: 'https://github.com/dev2Pedro/christmas-front',
   },
   {
-    name: 'Automação de relatório mensal',
-    description: 'Coleta commits do GitHub, gera resumo narrativo via IA (GitHub Models) e publica no Notion.',
-    stack: ['GitHub Models', 'Notion API'],
-    url: 'https://github.com/dev2Pedro',
+    name: 'Automações eSocial/FGTS/Edenred/Unico',
+    description: 'RPA para portais externos de RH: validação de PIS no FGTS (Caixa), tickets Edenred TEP, envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial.',
+    stack: ['Python', 'Selenium'],
+    internal: true,
   },
 ]
 
