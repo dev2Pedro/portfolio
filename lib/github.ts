@@ -5,7 +5,6 @@ export interface ContributionDay {
 }
 
 export interface ContributionsResponse {
-  total: Record<string, number>
   contributions: ContributionDay[]
 }
 
@@ -14,14 +13,42 @@ export async function getContributions(
 ): Promise<ContributionsResponse | null> {
   try {
     const res = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/${username}`,
+      `https://github.com/users/${username}/contributions`,
       { next: { revalidate: 3600 } },
     )
     if (!res.ok) return null
-    return (await res.json()) as ContributionsResponse
+    const html = await res.text()
+    const contributions = parseContributionsHtml(html)
+    if (contributions.length === 0) return null
+    return { contributions }
   } catch {
     return null
   }
+}
+
+function parseContributionsHtml(html: string): ContributionDay[] {
+  const counts = new Map<string, number>()
+  const tooltipRegex = /<tool-tip[^>]*for="([^"]+)"[^>]*>([^<]*)<\/tool-tip>/g
+  let tooltipMatch: RegExpExecArray | null
+  while ((tooltipMatch = tooltipRegex.exec(html))) {
+    const [, forId, text] = tooltipMatch
+    const countMatch = text.match(/^(\d+)/)
+    counts.set(forId, countMatch ? Number(countMatch[1]) : 0)
+  }
+
+  const dayTags =
+    html.match(/<td[^>]*class="ContributionCalendar-day"[^>]*><\/td>/g) ?? []
+
+  const days: ContributionDay[] = []
+  for (const tag of dayTags) {
+    const date = tag.match(/data-date="([\d-]+)"/)?.[1]
+    if (!date) continue
+    const level = Number(tag.match(/data-level="(\d)"/)?.[1] ?? '0')
+    const id = tag.match(/id="([^"]+)"/)?.[1]
+    const count = id ? (counts.get(id) ?? 0) : 0
+    days.push({ date, count, level })
+  }
+  return days
 }
 
 export function buildWeeks(

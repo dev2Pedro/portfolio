@@ -42,9 +42,12 @@ lib/
 
 ## GitHub Contributions
 
-- Fonte: `https://github-contributions-api.jogruber.de/v4/dev2Pedro` (API pública, sem autenticação, sem chave).
+- Fonte: `https://github.com/users/dev2Pedro/contributions` (página pública oficial do GitHub, HTML parseado no servidor — sem autenticação, sem chave).
+  - Motivo da troca em relação à ideia inicial (API terceira `github-contributions-api.jogruber.de`): essa API cacheava agressivamente via CDN (idade de cache de dezenas de minutos, sem invalidação perceptível) e devolvia os dias agrupados por ano em vez de em ordem cronológica única, causando heatmap com dados errados/desatualizados. A página oficial do GitHub reflete em tempo real a configuração de "Include private contributions on my profile" do usuário.
+  - Parse: extrai `data-date`/`data-level` de cada `<td class="ContributionCalendar-day">` e a contagem do `<tool-tip for="...">` correspondente.
 - Fetch em Server Component com `revalidate: 3600` (ISR de 1h).
-- Se o fetch falhar (erro de rede, rate limit, resposta inesperada): renderizar mensagem de fallback simples ("Não foi possível carregar as contribuições agora") em vez de quebrar a página. Não usar dado mockado como fallback.
+- Se o fetch falhar (erro de rede, mudança de markup do GitHub, resposta inesperada): renderizar mensagem de fallback simples ("Não foi possível carregar as contribuições agora") em vez de quebrar a página. Não usar dado mockado como fallback.
+- Risco: depende do HTML interno do GitHub (não é uma API pública estável) — se o GitHub mudar o markup da página de contribuições, o parser pode parar de encontrar dias e cair no fallback.
 
 ## Coding with Music
 
