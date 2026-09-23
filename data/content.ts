@@ -21,6 +21,7 @@ export interface ProjectItem {
   stack: string[]
   url?: string
   internal?: boolean
+  image?: string
 }
 
 export interface ToolCategory {
@@ -69,12 +70,14 @@ export const projects: ProjectItem[] = [
     description: 'Transcrição de vídeo com IA (Whisper via Groq) e geração automática de resumos e títulos. Processamento de vídeo no navegador com FFmpeg, back-end em Fastify + Prisma.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Prisma'],
     url: 'https://github.com/dev2Pedro/upload.ai',
+    image: '/projects/upload-ai.png',
   },
   {
     name: 'Christmas Elderly/API',
     description: 'Sistema de apadrinhamento natalino de idosos, em parceria com a turma de Psicologia da Unisociesc-Blumenau. Área administrativa autenticada, back-end em Fastify/Prisma/PostgreSQL (Supabase).',
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Fastify', 'PostgreSQL'],
     url: 'https://github.com/dev2Pedro/christmas-front',
+    image: '/projects/christmas-elderly.png',
   },
   {
     name: 'Automações eSocial/FGTS/Edenred/Unico',
