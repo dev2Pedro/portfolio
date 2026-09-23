@@ -78,7 +78,7 @@ export const projects: ProjectItem[] = [
   },
   {
     name: 'Automações eSocial/FGTS/Edenred/Unico',
-    description: 'RPA para portais externos de RH: validação de PIS no FGTS (Caixa), tickets Edenred TEP, envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial.',
+    description: 'RPA para portais externos de RH e DP: validação de PIS no FGTS (Caixa), tickets Edenred TEP, envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial.',
     stack: ['Python', 'Selenium'],
     internal: true,
   },
