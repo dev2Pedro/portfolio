@@ -19,6 +19,8 @@ import {
   SiFigma,
   SiPostman,
   SiExpo,
+  SiFlutter,
+  SiDart,
 } from 'react-icons/si'
 import { tools } from '@/data/content'
 
@@ -42,6 +44,8 @@ const ICON_MAP: Record<string, IconType> = {
   Figma: SiFigma,
   Postman: SiPostman,
   Expo: SiExpo,
+  Flutter: SiFlutter,
+  Dart: SiDart,
 }
 
 export default function Tools() {

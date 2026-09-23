@@ -38,7 +38,7 @@ export const profile: Profile = {
   name: 'Pedro Cristóvão',
   role: 'Full Stack Developer | Back-end | Automação RPA',
   bio: [
-    'Desenvolvedor full stack com experiência sólida em back-end (APIs REST em AdonisJS, Node.js/Express e Fastify, PostgreSQL/MySQL, Prisma e Lucid ORM) e em automações RPA (Python/Selenium) para processos internos de RH e operações. Também atuo em front-end moderno com React e Next.js, incluindo experiência com apps mobile em React Native/Expo.',
+    'Desenvolvedor full stack com experiência sólida em back-end (APIs REST em AdonisJS, Node.js/Express e Fastify, PostgreSQL/MySQL, Prisma e Lucid ORM) e em automações RPA (Python/Selenium) para processos internos de RH e operações. Também atuo em front-end moderno com React e Next.js, incluindo experiência com apps mobile em React Native/Expo, e vivência prática em projetos com Flutter e Dart.',
     'Tenho vivência no ciclo completo de sistemas internos — de módulos de autenticação/SSO e auditoria a customização de ERP (Odoo) — sempre com foco em código limpo, arquitetura escalável e entregas que economizam tempo operacional.',
   ],
   githubUsername: 'dev2Pedro',
@@ -98,7 +98,7 @@ export const tools: ToolCategory[] = [
   },
   {
     category: 'Mobile',
-    items: ['React Native', 'Expo'],
+    items: ['React Native', 'Expo', 'Flutter', 'Dart'],
   },
   {
     category: 'RPA & Automação',
