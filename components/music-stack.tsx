@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { Play, Pause } from 'lucide-react'
+import { Play, Pause, Volume2 } from 'lucide-react'
 import Stack from '@/components/stack'
+import WakeSlider from '@/components/wake-slider'
 import type { Track } from '@/data/content'
 
 interface MusicItem {
@@ -14,26 +15,37 @@ interface MusicItem {
 
 export default function MusicStack({ items }: { items: MusicItem[] }) {
   const audioRef = useRef<HTMLAudioElement>(null)
-  const [playingKey, setPlayingKey] = useState<string | null>(null)
+  const [activeKey, setActiveKey] = useState<string | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = 0.7
+  }, [])
 
   const togglePlay = (key: string, previewUrl: string) => {
     const audio = audioRef.current
     if (!audio) return
 
-    if (playingKey === key) {
-      audio.pause()
-      setPlayingKey(null)
+    if (activeKey === key) {
+      if (audio.paused) {
+        audio.play()
+        setIsPlaying(true)
+      } else {
+        audio.pause()
+        setIsPlaying(false)
+      }
       return
     }
 
     audio.src = previewUrl
     audio.play()
-    setPlayingKey(key)
+    setActiveKey(key)
+    setIsPlaying(true)
   }
 
   const cards = items.map(({ track, artwork, previewUrl }) => {
     const key = `${track.artist}-${track.title}`
-    const isPlaying = playingKey === key
+    const showPause = isPlaying && activeKey === key
 
     return (
       <div
@@ -63,7 +75,7 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
             onClick={() => togglePlay(key, previewUrl)}
             className="absolute top-3 right-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/50 backdrop-blur hover:bg-black/70"
           >
-            {isPlaying ? (
+            {showPause ? (
               <Pause size={14} className="fill-white text-white" />
             ) : (
               <Play size={14} className="fill-white text-white" />
@@ -75,16 +87,33 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
   })
 
   return (
-    <div className="mx-auto h-72 w-72">
-      <audio ref={audioRef} onEnded={() => setPlayingKey(null)} />
-      <Stack
-        cards={cards}
-        randomRotation
-        sensitivity={150}
-        autoplay
-        autoplayDelay={2800}
-        pauseOnHover
-      />
+    <div className="mx-auto w-72">
+      <audio ref={audioRef} onEnded={() => setIsPlaying(false)} />
+      <div className="h-72">
+        <Stack
+          cards={cards}
+          randomRotation
+          sensitivity={150}
+          autoplay
+          autoplayDelay={2800}
+          pauseOnHover
+        />
+      </div>
+      <div className="mt-5 flex items-center gap-2 text-zinc-400">
+        <Volume2 size={16} />
+        <WakeSlider
+          defaultValue={70}
+          height={28}
+          restHeight={6}
+          bars={24}
+          fillColor="#a1a1aa"
+          trackColor="#27272a"
+          ariaLabel="Volume"
+          onChange={(v) => {
+            if (audioRef.current) audioRef.current.volume = v / 100
+          }}
+        />
+      </div>
     </div>
   )
 }
