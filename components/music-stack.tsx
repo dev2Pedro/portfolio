@@ -6,6 +6,9 @@ import { Play, Pause, Volume2 } from 'lucide-react'
 import Stack from '@/components/stack'
 import WakeSlider from '@/components/wake-slider'
 import type { Track } from '@/data/content'
+import { translations } from '@/data/i18n'
+import { useLanguage } from '@/components/language-provider'
+import { useTheme } from '@/components/theme-provider'
 
 interface MusicItem {
   track: Track
@@ -14,6 +17,9 @@ interface MusicItem {
 }
 
 export default function MusicStack({ items }: { items: MusicItem[] }) {
+  const { locale } = useLanguage()
+  const { theme } = useTheme()
+  const t = translations[locale]
   const audioRef = useRef<HTMLAudioElement>(null)
   const [activeKey, setActiveKey] = useState<string | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -60,7 +66,7 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
             className="pointer-events-none object-cover"
           />
         ) : (
-          <div className="h-full w-full bg-gradient-to-br from-zinc-800 to-zinc-900" />
+          <div className="h-full w-full bg-gradient-to-br from-zinc-300 to-zinc-400 dark:from-zinc-800 dark:to-zinc-900" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
         <div className="absolute right-0 bottom-0 left-0 p-4">
@@ -87,33 +93,41 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
   })
 
   return (
-    <div className="mx-auto w-72">
-      <audio ref={audioRef} onEnded={() => setIsPlaying(false)} />
-      <div className="h-72">
-        <Stack
-          cards={cards}
-          randomRotation
-          sensitivity={150}
-          autoplay
-          autoplayDelay={2800}
-          pauseOnHover
-        />
+    <section className="mx-auto max-w-3xl px-6 py-16">
+      <h2 className="mb-1 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        Coding with music
+      </h2>
+      <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+        {t.sections.musicSubtitle}
+      </p>
+      <div className="mx-auto w-72">
+        <audio ref={audioRef} onEnded={() => setIsPlaying(false)} />
+        <div className="h-72">
+          <Stack
+            cards={cards}
+            randomRotation
+            sensitivity={150}
+            autoplay
+            autoplayDelay={2800}
+            pauseOnHover
+          />
+        </div>
+        <div className="mt-5 flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+          <Volume2 size={16} />
+          <WakeSlider
+            defaultValue={70}
+            height={28}
+            restHeight={6}
+            bars={24}
+            fillColor={theme === 'dark' ? '#a1a1aa' : '#52525b'}
+            trackColor={theme === 'dark' ? '#27272a' : '#d4d4d8'}
+            ariaLabel="Volume"
+            onChange={(v) => {
+              if (audioRef.current) audioRef.current.volume = v / 100
+            }}
+          />
+        </div>
       </div>
-      <div className="mt-5 flex items-center gap-2 text-zinc-400">
-        <Volume2 size={16} />
-        <WakeSlider
-          defaultValue={70}
-          height={28}
-          restHeight={6}
-          bars={24}
-          fillColor="#a1a1aa"
-          trackColor="#27272a"
-          ariaLabel="Volume"
-          onChange={(v) => {
-            if (audioRef.current) audioRef.current.volume = v / 100
-          }}
-        />
-      </div>
-    </div>
+    </section>
   )
 }

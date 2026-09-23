@@ -1,7 +1,11 @@
+'use client'
+
 import { Laptop, Server, Smartphone, Bot, Database, Wrench } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { TechBadge } from '@/components/tech-badge'
 import { tools } from '@/data/content'
+import { translations } from '@/data/i18n'
+import { useLanguage } from '@/components/language-provider'
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   'Front-end': Laptop,
@@ -13,25 +17,28 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 }
 
 export default function Tools() {
+  const { locale } = useLanguage()
+  const t = translations[locale]
+
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-1 text-2xl font-semibold text-zinc-100">
+      <h2 className="mb-1 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
         Tools I use
       </h2>
-      <p className="mb-8 text-sm text-zinc-400">
-        Seleção de ferramentas usadas no dia a dia pra construir soluções escaláveis e de alta performance.
+      <p className="mb-8 text-sm text-zinc-600 dark:text-zinc-400">
+        {t.sections.toolsSubtitle}
       </p>
       <div className="space-y-5">
-        {tools.map((category) => {
+        {tools.map((category, i) => {
           const CategoryIcon = CATEGORY_ICONS[category.category]
           return (
             <div
               key={category.category}
-              className="flex flex-col gap-3 border-b border-zinc-800 pb-5 sm:flex-row sm:items-center"
+              className="flex flex-col gap-3 border-b border-zinc-200 pb-5 sm:flex-row sm:items-center dark:border-zinc-800"
             >
               <div className="flex w-44 shrink-0 items-center gap-2 text-sm text-zinc-500">
                 {CategoryIcon && <CategoryIcon size={16} />}
-                {category.category}
+                {t.tools[i].category}
               </div>
               <div className="flex flex-wrap items-center gap-4">
                 {category.items.map((item) => (
