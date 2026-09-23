@@ -90,11 +90,11 @@ export const projects: ProjectItem[] = [
 export const tools: ToolCategory[] = [
   {
     category: 'Front-end',
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Radix UI', 'TanStack Query/Table', 'Zustand', 'GSAP'],
+    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
   },
   {
     category: 'Back-end',
-    items: ['Node.js', 'AdonisJS', 'Fastify', 'Express', 'Prisma', 'Lucid ORM', 'PostgreSQL', 'MySQL', 'Zod', 'JWT', 'BullMQ/Redis', 'Socket.io'],
+    items: ['Node.js', 'Express', 'Prisma', 'Redis', 'AdonisJS'],
   },
   {
     category: 'Mobile',
@@ -102,15 +102,15 @@ export const tools: ToolCategory[] = [
   },
   {
     category: 'RPA & Automação',
-    items: ['Python', 'Selenium', 'openpyxl', 'PyInstaller', 'n8n'],
+    items: ['Python', 'Selenium', 'n8n'],
   },
   {
-    category: 'ERP & Dados',
-    items: ['Odoo (Python/XML)', 'PostgreSQL', 'MySQL', 'SQL Server'],
+    category: 'Banco de dados',
+    items: ['PostgreSQL', 'MySQL'],
   },
   {
     category: 'Ferramentas',
-    items: ['Git', 'GitHub', 'Docker', 'AWS (S3, Amplify)', 'Figma', 'Claude Code', 'Postman'],
+    items: ['Git', 'GitHub', 'Docker', 'AWS (S3, Amplify)', 'Figma', 'Postman'],
   },
 ]
 
