@@ -27,7 +27,11 @@ export async function getContributions(
 export function buildWeeks(
   days: ContributionDay[],
 ): (ContributionDay | null)[][] {
-  const last365 = days.slice(-365)
+  const today = new Date().toISOString().slice(0, 10)
+  const sorted = days
+    .filter((day) => day.date <= today)
+    .sort((a, b) => a.date.localeCompare(b.date))
+  const last365 = sorted.slice(-365)
   if (last365.length === 0) return []
 
   const weeks: (ContributionDay | null)[][] = []
