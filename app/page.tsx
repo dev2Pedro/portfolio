@@ -4,6 +4,8 @@ import Experience from '@/components/experience'
 import Tools from '@/components/tools'
 import Contributions from '@/components/contributions'
 import CodingWithMusic from '@/components/coding-with-music'
+import Contact from '@/components/contact'
+import Footer from '@/components/footer'
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       <Tools />
       <Contributions />
       <CodingWithMusic />
+      <Contact />
+      <Footer />
     </main>
   )
 }
