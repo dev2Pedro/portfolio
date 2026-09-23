@@ -17,7 +17,8 @@ export default function MusicStack({ items }: MusicStackProps) {
       href={`https://open.spotify.com/search/${encodeURIComponent(
         `${track.title} ${track.artist}`,
       )}`}
-      className="relative block h-full w-full"
+      draggable={false}
+      className="relative block h-full w-full cursor-grab active:cursor-grabbing"
     >
       {artwork ? (
         <Image
