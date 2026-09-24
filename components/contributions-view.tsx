@@ -22,8 +22,8 @@ export default function ContributionsView({
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Contributions
+      <h2 className="mb-6 font-heading text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {t.sections.contributionsTitle}
       </h2>
       {!data ? (
         <p className="text-sm text-zinc-500">

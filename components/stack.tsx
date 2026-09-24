@@ -45,6 +45,8 @@ function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
   )
 }
 
+const VISIBLE_DEPTH = 5
+
 interface StackCard {
   id: number
   content: React.ReactNode
@@ -74,11 +76,19 @@ export default function Stack({
     cards.map((content, index) => ({
       id: index + 1,
       content,
-      rotation: randomRotation ? Math.random() * 10 - 5 : 0,
+      rotation: 0,
     }))
 
   const [isPaused, setIsPaused] = useState(false)
   const [stack, setStack] = useState<StackCard[]>(() => buildStack(cards))
+
+  useEffect(() => {
+    if (!randomRotation) return
+    setStack((prev) =>
+      prev.map((card) => ({ ...card, rotation: Math.random() * 10 - 5 })),
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const sendToBack = (id: number) => {
     setStack((prev) => {
@@ -109,6 +119,7 @@ export default function Stack({
       onMouseLeave={() => pauseOnHover && setIsPaused(false)}
     >
       {stack.map((card, index) => {
+        const distanceFromTop = Math.min(stack.length - index - 1, VISIBLE_DEPTH)
         return (
           <CardRotate
             key={card.id}
@@ -118,8 +129,9 @@ export default function Stack({
             <motion.div
               className="rounded-2xl overflow-hidden w-full h-full"
               animate={{
-                rotateZ: (stack.length - index - 1) * 4 + card.rotation,
-                scale: 1 + index * 0.06 - stack.length * 0.06,
+                rotateZ: distanceFromTop * 4 + card.rotation,
+                scale: 1 - distanceFromTop * 0.06,
+                opacity: stack.length - index - 1 > VISIBLE_DEPTH ? 0 : 1,
                 transformOrigin: '90% 90%',
               }}
               initial={false}

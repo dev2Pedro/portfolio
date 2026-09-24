@@ -1,57 +1,57 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import { Play, Pause, Volume2 } from 'lucide-react'
-import Stack from '@/components/stack'
-import WakeSlider from '@/components/wake-slider'
-import type { Track } from '@/data/content'
-import { translations } from '@/data/i18n'
-import { useLanguage } from '@/components/language-provider'
-import { useTheme } from '@/components/theme-provider'
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Play, Pause, Volume2 } from "lucide-react";
+import Stack from "@/components/stack";
+import WakeSlider from "@/components/wake-slider";
+import type { Track } from "@/data/content";
+import { translations } from "@/data/i18n";
+import { useLanguage } from "@/components/language-provider";
+import { useTheme } from "@/components/theme-provider";
 
 interface MusicItem {
-  track: Track
-  artwork: string | null
-  previewUrl: string | null
+  track: Track;
+  artwork: string | null;
+  previewUrl: string | null;
 }
 
 export default function MusicStack({ items }: { items: MusicItem[] }) {
-  const { locale } = useLanguage()
-  const { theme } = useTheme()
-  const t = translations[locale]
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [activeKey, setActiveKey] = useState<string | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const { locale } = useLanguage();
+  const { theme } = useTheme();
+  const t = translations[locale];
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = 0.7
-  }, [])
+    if (audioRef.current) audioRef.current.volume = 0.7;
+  }, []);
 
   const togglePlay = (key: string, previewUrl: string) => {
-    const audio = audioRef.current
-    if (!audio) return
+    const audio = audioRef.current;
+    if (!audio) return;
 
     if (activeKey === key) {
       if (audio.paused) {
-        audio.play()
-        setIsPlaying(true)
+        audio.play();
+        setIsPlaying(true);
       } else {
-        audio.pause()
-        setIsPlaying(false)
+        audio.pause();
+        setIsPlaying(false);
       }
-      return
+      return;
     }
 
-    audio.src = previewUrl
-    audio.play()
-    setActiveKey(key)
-    setIsPlaying(true)
-  }
+    audio.src = previewUrl;
+    audio.play();
+    setActiveKey(key);
+    setIsPlaying(true);
+  };
 
   const cards = items.map(({ track, artwork, previewUrl }) => {
-    const key = `${track.artist}-${track.title}`
-    const showPause = isPlaying && activeKey === key
+    const key = `${track.artist}-${track.title}`;
+    const showPause = isPlaying && activeKey === key;
 
     return (
       <div
@@ -89,13 +89,13 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
           </button>
         )}
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-1 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Coding with music
+      <h2 className="mb-1 font-heading text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {t.sections.musicTitle}
       </h2>
       <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
         {t.sections.musicSubtitle}
@@ -119,15 +119,15 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
             height={28}
             restHeight={6}
             bars={24}
-            fillColor={theme === 'dark' ? '#a1a1aa' : '#52525b'}
-            trackColor={theme === 'dark' ? '#27272a' : '#d4d4d8'}
+            fillColor={theme === "dark" ? "#a1a1aa" : "#52525b"}
+            trackColor={theme === "dark" ? "#27272a" : "#d4d4d8"}
             ariaLabel="Volume"
             onChange={(v) => {
-              if (audioRef.current) audioRef.current.volume = v / 100
+              if (audioRef.current) audioRef.current.volume = v / 100;
             }}
           />
         </div>
       </div>
     </section>
-  )
+  );
 }

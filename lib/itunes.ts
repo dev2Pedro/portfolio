@@ -10,15 +10,26 @@ export interface TrackMedia {
   previewUrl: string | null
 }
 
+async function fetchWithRetry(url: string, attempts = 3): Promise<Response> {
+  let lastRes: Response | undefined
+  for (let i = 0; i < attempts; i++) {
+    const res = await fetch(url, { next: { revalidate: 86400 } })
+    if (res.ok) return res
+    lastRes = res
+    if (res.status !== 403 && res.status !== 429) break
+    await new Promise((resolve) => setTimeout(resolve, 500 * (i + 1)))
+  }
+  return lastRes!
+}
+
 export async function getTrackMedia(
   title: string,
   artist: string,
 ): Promise<TrackMedia> {
   try {
     const query = encodeURIComponent(`${title} ${artist}`)
-    const res = await fetch(
+    const res = await fetchWithRetry(
       `https://itunes.apple.com/search?term=${query}&entity=song&limit=5`,
-      { next: { revalidate: 86400 } },
     )
     if (!res.ok) return { artwork: null, previewUrl: null }
     const data = (await res.json()) as { results: ITunesResult[] }

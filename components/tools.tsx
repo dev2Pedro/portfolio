@@ -22,8 +22,8 @@ export default function Tools() {
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-1 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Tools I use
+      <h2 className="mb-1 font-heading text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {t.sections.toolsTitle}
       </h2>
       <p className="mb-8 text-sm text-zinc-600 dark:text-zinc-400">
         {t.sections.toolsSubtitle}

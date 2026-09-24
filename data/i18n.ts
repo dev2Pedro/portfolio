@@ -17,8 +17,14 @@ interface Translations {
     category: string
   }[]
   sections: {
+    workTitle: string
+    experiencesTitle: string
+    toolsTitle: string
     toolsSubtitle: string
+    contributionsTitle: string
+    musicTitle: string
     musicSubtitle: string
+    contactTitle: string
     viewOnGithub: string
     contributionsFallback: string
   }
@@ -27,7 +33,7 @@ interface Translations {
 export const translations: Record<Locale, Translations> = {
   pt: {
     profile: {
-      role: 'Full Stack Developer | Back-end | Automação RPA',
+      role: 'Desenvolvedor Full Stack | Back-end | Automação RPA',
       bio: [
         'Desenvolvedor full stack com experiência sólida em back-end (APIs REST em AdonisJS, Node.js/Express e Fastify, PostgreSQL/MySQL, Prisma e Lucid ORM) e em automações RPA (Python/Selenium) para processos internos de RH e operações. Também atuo em front-end moderno com React e Next.js, incluindo experiência com apps mobile em React Native/Expo, e vivência prática em projetos com Flutter e Dart.',
         'Tenho vivência no ciclo completo de sistemas internos — de módulos de autenticação/SSO e auditoria a customização de ERP (Odoo) — sempre com foco em código limpo, arquitetura escalável e entregas que economizam tempo operacional.',
@@ -36,10 +42,10 @@ export const translations: Record<Locale, Translations> = {
     experience: [
       {
         role: 'Desenvolvedor Full Stack',
-        period: '2024 — atual',
+        period: 'Desde 2024',
         bullets: [
           'Desenvolvimento de APIs REST em AdonisJS v6 (arquitetura MSC, JWT, validação Zod, Lucid ORM/PostgreSQL) para sistemas internos de RH e operações.',
-          'Criação do módulo de autenticação centralizada (SSO) da empresa — middleware JWT, refresh token — e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, integração server-to-server entre aplicações).',
+          'Criação do módulo de autenticação centralizada (SSO) da empresa, com middleware JWT e refresh token, e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, integração server-to-server entre aplicações).',
           'Desenvolvimento full stack do sistema interno de gestão de frota e reservas: back-end em Node.js/Express/Prisma com filas (BullMQ/Redis) e upload para AWS S3; front-end em React/TypeScript com dashboards de BI.',
           'Desenvolvimento do aplicativo mobile de notificações do sistema Conecta, em React Native + Expo.',
           'Customização do ERP Odoo 18 (Python): módulo de armazenamento de anexos em S3/MinIO, hotfixes de localização fiscal brasileira e dashboard de KPIs para o CRM.',
@@ -71,9 +77,15 @@ export const translations: Record<Locale, Translations> = {
       { category: 'Ferramentas' },
     ],
     sections: {
+      workTitle: 'Trabalhos e projetos',
+      experiencesTitle: 'Experiências',
+      toolsTitle: 'Ferramentas que uso',
       toolsSubtitle: 'Seleção de ferramentas usadas no dia a dia.',
+      contributionsTitle: 'Contribuições',
+      musicTitle: 'Playlist',
       musicSubtitle:
         'Música é meu combustível pra focar e programar. Arraste os cards ou deixa rolar sozinho — dá pra ouvir um trecho de cada faixa.',
+      contactTitle: 'Fale comigo',
       viewOnGithub: 'Ver no GitHub',
       contributionsFallback: 'Não foi possível carregar as contribuições agora.',
     },
@@ -89,10 +101,10 @@ export const translations: Record<Locale, Translations> = {
     experience: [
       {
         role: 'Full Stack Developer',
-        period: '2024 — present',
+        period: 'Since 2024',
         bullets: [
           'Development of REST APIs in AdonisJS v6 (MSC architecture, JWT, Zod validation, Lucid ORM/PostgreSQL) for internal HR and operations systems.',
-          "Creation of the company's centralized authentication module (SSO) — JWT middleware, refresh tokens — and leadership of the audit/logging module (ingestion, filters, CSV export, server-to-server integration between applications).",
+          "Creation of the company's centralized authentication module (SSO), with JWT middleware and refresh tokens, and leadership of the audit/logging module (ingestion, filters, CSV export, server-to-server integration between applications).",
           'Full stack development of the internal fleet and reservation management system: back-end in Node.js/Express/Prisma with queues (BullMQ/Redis) and AWS S3 upload; front-end in React/TypeScript with BI dashboards.',
           "Development of the Conecta system's mobile notification app, in React Native + Expo.",
           'Odoo 18 ERP customization (Python): attachment storage module in S3/MinIO, Brazilian fiscal localization hotfixes, and a KPI dashboard for the CRM.',
@@ -124,9 +136,15 @@ export const translations: Record<Locale, Translations> = {
       { category: 'Tools' },
     ],
     sections: {
+      workTitle: 'Work and projects',
+      experiencesTitle: 'Experiences',
+      toolsTitle: 'Tools I use',
       toolsSubtitle: 'A selection of tools used day to day.',
+      contributionsTitle: 'Contributions',
+      musicTitle: 'Playlist',
       musicSubtitle:
         'Music is my fuel to focus and code. Drag the cards or let it play — you can listen to a preview of each track.',
+      contactTitle: 'Get in touch',
       viewOnGithub: 'View on GitHub',
       contributionsFallback: "Couldn't load contributions right now.",
     },

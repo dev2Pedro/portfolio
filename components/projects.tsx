@@ -13,8 +13,8 @@ export default function Projects() {
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-10 text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Work and projects
+      <h2 className="mb-10 font-heading text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {t.sections.workTitle}
       </h2>
       <div className="space-y-16">
         {projects.map((project, i) => {
@@ -41,10 +41,14 @@ export default function Projects() {
                 </div>
               )}
               <div className="flex-1">
-                <p className="text-lg text-zinc-600 dark:text-zinc-400">
+                <p
+                  className={`text-lg text-zinc-600 dark:text-zinc-400 ${
+                    i === projects.length - 1 ? 'truncate' : ''
+                  }`}
+                >
                   {project.name}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
                   {t.projects[i].description}
                 </p>
                 <div className="mt-4 flex flex-wrap items-center gap-3">

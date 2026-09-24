@@ -10,8 +10,8 @@ export default function Experience() {
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Experiences
+      <h2 className="mb-6 font-heading text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {t.sections.experiencesTitle}
       </h2>
       <div className="space-y-6">
         {experience.map((item, i) => {
