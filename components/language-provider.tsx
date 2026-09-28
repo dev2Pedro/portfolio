@@ -18,6 +18,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 const LOCALE_STORAGE_KEY = 'locale'
+const LOCALE_HTML_LANG: Record<Locale, string> = { pt: 'pt-BR', en: 'en' }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>('pt')
@@ -32,6 +33,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem(LOCALE_STORAGE_KEY, locale)
+    document.documentElement.lang = LOCALE_HTML_LANG[locale]
   }, [locale])
 
   const toggleLocale = () => {

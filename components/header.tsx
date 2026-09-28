@@ -63,7 +63,12 @@ export default function Header() {
               <h1 className="font-heading text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                 {profile.name}
               </h1>
-              <BadgeCheck size={18} className="text-blue-500" />
+              <BadgeCheck
+                size={18}
+                className="text-blue-500"
+                role="img"
+                aria-label={locale === 'pt' ? 'Perfil verificado' : 'Verified profile'}
+              />
             </div>
             <div className="mt-1 flex gap-3">
               <Link

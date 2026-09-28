@@ -33,21 +33,24 @@ export default function ContributionsView({
         <div className="flex gap-1 overflow-x-auto">
           {buildWeeks(data.contributions).map((week, wi) => (
             <div key={wi} className="flex flex-col gap-1">
-              {week.map((day, di) => (
-                <div
-                  key={di}
-                  className={`h-3 w-3 rounded-sm ${
-                    day ? LEVEL_COLORS[day.level] : 'bg-transparent'
-                  }`}
-                  title={
-                    day
-                      ? `${day.date}: ${day.count} ${
-                          locale === 'pt' ? 'contribuições' : 'contributions'
-                        }`
-                      : undefined
-                  }
-                />
-              ))}
+              {week.map((day, di) => {
+                const label = day
+                  ? `${day.date}: ${day.count} ${
+                      locale === 'pt' ? 'contribuições' : 'contributions'
+                    }`
+                  : undefined
+                return (
+                  <div
+                    key={di}
+                    className={`h-3 w-3 rounded-sm ${
+                      day ? LEVEL_COLORS[day.level] : 'bg-transparent'
+                    }`}
+                    title={label}
+                    aria-label={label}
+                    role={day ? 'img' : undefined}
+                  />
+                )
+              })}
             </div>
           ))}
         </div>
