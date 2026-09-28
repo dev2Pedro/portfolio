@@ -32,6 +32,7 @@ export default function Projects() {
                     src={project.image}
                     alt={project.name}
                     fill
+                    sizes="(min-width: 640px) 336px, 100vw"
                     className="object-cover"
                   />
                 </div>

@@ -44,6 +44,7 @@ const MusicCard = memo(function MusicCard({
           src={artwork}
           alt={track.title}
           fill
+          sizes="288px"
           className="pointer-events-none object-cover"
         />
       ) : (
