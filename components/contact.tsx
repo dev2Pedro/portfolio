@@ -28,8 +28,8 @@ export default function Contact() {
           href={profile.linkedinUrl}
           className="inline-flex items-center gap-1.5 underline underline-offset-2 hover:text-zinc-900 dark:hover:text-zinc-100"
         >
-          <FaLinkedin size={14} />
           LinkedIn
+          <FaLinkedin size={14} />
         </a>
       </p>
     </section>
