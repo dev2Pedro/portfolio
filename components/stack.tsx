@@ -33,7 +33,7 @@ function CardRotate({ children, onSendToBack, sensitivity, reduceMotion }: CardR
 
   return (
     <motion.div
-      className="absolute inset-0 cursor-grab"
+      className="absolute inset-0 touch-none cursor-grab"
       style={{ x, y, rotateX, rotateY }}
       drag
       dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
