@@ -11,7 +11,7 @@ export default function Experience() {
   const { locale } = useLanguage()
   const t = translations[locale]
   const reduceMotion = !!useReducedMotion()
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
   const baseId = useId()
 
   return (
