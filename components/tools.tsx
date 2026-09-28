@@ -42,7 +42,7 @@ export default function Tools() {
               </div>
               <div className="flex flex-wrap items-center gap-4">
                 {category.items.map((item) => (
-                  <TechBadge key={item} name={item} size={32} />
+                  <TechBadge key={item} name={item} size={40} />
                 ))}
               </div>
             </div>

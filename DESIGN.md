@@ -162,7 +162,7 @@ Cantos suavemente arredondados em quase tudo, sem geometria angular. Escala de r
 - O contato agora tem uma CTA primária real (botão com borda, ícone e rótulo) — não é mais só utilitário icon-only; toggles de tema/idioma e play/pause continuam sendo os únicos icon-only.
 
 ### Chips (Tech Badge)
-- **Estilo:** ícone SVG 28px (32px em Ferramentas) sem fundo; nome do item aparece só como fallback textual quando não há ícone mapeado.
+- **Estilo:** ícone SVG 28px (40px em Ferramentas, categoria com maior densidade de ícones) sem fundo; nome do item aparece só como fallback textual quando não há ícone mapeado.
 - **State:** hover revela tooltip (nome completo) acima do ícone, fundo invertido (`zinc-900` claro / `zinc-100` escuro), com sombra (única exceção de elevação do sistema).
 
 ### Cards / Containers (Projects)
