@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Play, Pause, Volume2 } from "lucide-react";
 import Stack from "@/components/stack";
@@ -15,6 +15,62 @@ interface MusicItem {
   artwork: string | null;
   previewUrl: string | null;
 }
+
+const MusicCard = memo(function MusicCard({
+  track,
+  artwork,
+  previewUrl,
+  isActive,
+  isPlaying,
+  playLabel,
+  pauseLabel,
+  onToggle,
+}: {
+  track: Track;
+  artwork: string | null;
+  previewUrl: string | null;
+  isActive: boolean;
+  isPlaying: boolean;
+  playLabel: string;
+  pauseLabel: string;
+  onToggle: () => void;
+}) {
+  const showPause = isActive && isPlaying;
+
+  return (
+    <div className="relative h-full w-full cursor-grab select-none active:cursor-grabbing">
+      {artwork ? (
+        <Image
+          src={artwork}
+          alt={track.title}
+          fill
+          className="pointer-events-none object-cover"
+        />
+      ) : (
+        <div className="h-full w-full bg-gradient-to-br from-zinc-300 to-zinc-400 dark:from-zinc-800 dark:to-zinc-900" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+      <div className="absolute right-0 bottom-0 left-0 p-4">
+        <p className="truncate text-sm font-medium text-white">{track.title}</p>
+        <p className="truncate text-xs text-zinc-300">{track.artist}</p>
+      </div>
+      {previewUrl && (
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-label={showPause ? pauseLabel : playLabel}
+          className="absolute top-1 right-1 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-black/50 backdrop-blur hover:bg-black/70"
+        >
+          {showPause ? (
+            <Pause size={14} className="fill-white text-white" />
+          ) : (
+            <Play size={14} className="fill-white text-white" />
+          )}
+        </button>
+      )}
+    </div>
+  );
+});
 
 export default function MusicStack({ items }: { items: MusicItem[] }) {
   const { locale } = useLanguage();
@@ -51,44 +107,18 @@ export default function MusicStack({ items }: { items: MusicItem[] }) {
 
   const cards = items.map(({ track, artwork, previewUrl }) => {
     const key = `${track.artist}-${track.title}`;
-    const showPause = isPlaying && activeKey === key;
-
     return (
-      <div
+      <MusicCard
         key={key}
-        className="relative h-full w-full cursor-grab select-none active:cursor-grabbing"
-      >
-        {artwork ? (
-          <Image
-            src={artwork}
-            alt={track.title}
-            fill
-            className="pointer-events-none object-cover"
-          />
-        ) : (
-          <div className="h-full w-full bg-gradient-to-br from-zinc-300 to-zinc-400 dark:from-zinc-800 dark:to-zinc-900" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-        <div className="absolute right-0 bottom-0 left-0 p-4">
-          <p className="truncate text-sm font-medium text-white">
-            {track.title}
-          </p>
-          <p className="truncate text-xs text-zinc-300">{track.artist}</p>
-        </div>
-        {previewUrl && (
-          <button
-            type="button"
-            onClick={() => togglePlay(key, previewUrl)}
-            className="absolute top-3 right-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/50 backdrop-blur hover:bg-black/70"
-          >
-            {showPause ? (
-              <Pause size={14} className="fill-white text-white" />
-            ) : (
-              <Play size={14} className="fill-white text-white" />
-            )}
-          </button>
-        )}
-      </div>
+        track={track}
+        artwork={artwork}
+        previewUrl={previewUrl}
+        isActive={activeKey === key}
+        isPlaying={isPlaying}
+        playLabel={t.sections.play}
+        pauseLabel={t.sections.pause}
+        onToggle={() => previewUrl && togglePlay(key, previewUrl)}
+      />
     );
   });
 

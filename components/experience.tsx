@@ -30,7 +30,7 @@ export default function Experience() {
                     {item.company}
                   </p>
                 </div>
-                <span className="text-sm text-zinc-500">{tItem.period}</span>
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">{tItem.period}</span>
               </div>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-300">
                 {tItem.bullets.map((bullet, i) => (

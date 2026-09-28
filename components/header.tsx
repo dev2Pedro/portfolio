@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, BadgeCheck } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
 import { FaLinkedin } from 'react-icons/fa6'
@@ -9,6 +10,36 @@ import { translations } from '@/data/i18n'
 import { useLanguage } from '@/components/language-provider'
 import ThemeToggle from '@/components/theme-toggle'
 import LanguageToggle from '@/components/language-toggle'
+
+const BIO_HIGHLIGHTS: Record<string, string[][]> = {
+  pt: [
+    ['back-end', 'automações RPA', 'front-end moderno'],
+    ['autenticação/SSO', 'integração de microsserviços', 'economizam tempo operacional'],
+  ],
+  en: [
+    ['back-end', 'RPA automation', 'modern front-end'],
+    ['authentication/SSO', 'microservices integration', 'deliveries that save operational time'],
+  ],
+}
+
+function highlightBio(text: string, keywords: string[]) {
+  const nodes: React.ReactNode[] = []
+  let rest = text
+  let key = 0
+  for (const kw of keywords) {
+    const idx = rest.indexOf(kw)
+    if (idx === -1) continue
+    if (idx > 0) nodes.push(rest.slice(0, idx))
+    nodes.push(
+      <strong key={key++} className="font-semibold">
+        {kw}
+      </strong>,
+    )
+    rest = rest.slice(idx + kw.length)
+  }
+  nodes.push(rest)
+  return nodes
+}
 
 export default function Header() {
   const { locale } = useLanguage()
@@ -19,11 +50,13 @@ export default function Header() {
     <header className="mx-auto max-w-3xl px-6 pt-16 pb-8">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/avatar.jpg"
             alt={profile.name}
-            className="h-36 w-36 shrink-0 rounded-full bg-zinc-200 object-cover dark:bg-zinc-800"
+            width={144}
+            height={144}
+            priority
+            className="h-24 w-24 shrink-0 rounded-full bg-zinc-200 object-cover sm:h-36 sm:w-36 dark:bg-zinc-800"
           />
           <div>
             <div className="flex items-center gap-1.5">
@@ -73,7 +106,7 @@ export default function Header() {
       </p>
       <div className="mt-4 space-y-4 text-zinc-700 dark:text-zinc-300">
         {t.profile.bio.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
+          <p key={i}>{highlightBio(paragraph, BIO_HIGHLIGHTS[locale]?.[i] ?? [])}</p>
         ))}
       </div>
     </header>

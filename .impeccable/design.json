@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T18:03:39Z",
+  "title": "Design System: Pedro Cristóvão — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "void": { "role": "primary", "displayName": "Void", "canonical": "#0a0a0a", "tonalRamp": ["#000000", "#0a0a0a", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa"] },
+      "paper": { "role": "primary", "displayName": "Paper", "canonical": "#fafafa", "tonalRamp": ["#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5", "#fafafa", "#ffffff", "#ffffff", "#ffffff"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#f4f4f5", "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#f4f4f5"] },
+      "ink-deep": { "role": "neutral", "displayName": "Ink Deep", "canonical": "#18181b", "tonalRamp": ["#000000", "#09090b", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa"] },
+      "mist-200": { "role": "neutral", "displayName": "Mist 200", "canonical": "#e4e4e7", "tonalRamp": ["#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5", "#fafafa", "#ffffff", "#ffffff"] },
+      "mist-800": { "role": "neutral", "displayName": "Mist 800", "canonical": "#27272a", "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8"] },
+      "fog-500": { "role": "neutral", "displayName": "Fog 500", "canonical": "#71717a", "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7"] },
+      "smoke-600": { "role": "neutral", "displayName": "Smoke 600", "canonical": "#52525b", "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7"] },
+      "smoke-700": { "role": "neutral", "displayName": "Smoke 700", "canonical": "#3f3f46", "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8"] },
+      "ash-300": { "role": "neutral", "displayName": "Ash 300", "canonical": "#d4d4d8", "tonalRamp": ["#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5", "#fafafa", "#ffffff"] },
+      "ash-400": { "role": "neutral", "displayName": "Ash 400", "canonical": "#a1a1aa", "tonalRamp": ["#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5", "#fafafa"] },
+      "verified-blue": { "role": "tertiary", "displayName": "Verified Blue", "canonical": "#3b82f6", "tonalRamp": ["#1e3a8a", "#1d4ed8", "#2563eb", "#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe", "#dbeafe"] },
+      "contribution-0": { "role": "tertiary", "displayName": "Contribution — Nenhuma", "canonical": "#e4e4e7", "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5"] },
+      "contribution-1": { "role": "tertiary", "displayName": "Contribution — Baixa", "canonical": "#86efac", "tonalRamp": ["#14532d", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0", "#dcfce7"] },
+      "contribution-2": { "role": "tertiary", "displayName": "Contribution — Média", "canonical": "#22c55e", "tonalRamp": ["#052e16", "#14532d", "#166534", "#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0"] },
+      "contribution-3": { "role": "tertiary", "displayName": "Contribution — Alta", "canonical": "#16a34a", "tonalRamp": ["#052e16", "#14532d", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0"] },
+      "contribution-4": { "role": "tertiary", "displayName": "Contribution — Pico", "canonical": "#15803d", "tonalRamp": ["#052e16", "#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#86efac"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Nome próprio no header (h1)." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de cada seção (h2), sempre em JetBrains Mono." },
+      "body": { "displayName": "Body", "purpose": "Bio, descrições de projeto, bullets de experiência." },
+      "label": { "displayName": "Label", "purpose": "Datas, tooltips, legendas e valores de controle." }
+    },
+    "shadows": [
+      { "name": "tooltip-popover", "value": "shadow-md (Tailwind default)", "purpose": "Único uso de sombra do sistema — popover do tooltip de nome de tecnologia no TechBadge." }
+    ],
+    "motion": [
+      { "name": "hover-transition", "value": "120ms–200ms ease", "purpose": "Transições de cor/fundo em hover de botões, links e badges." },
+      { "name": "wake-slider-spring", "value": "spring física (settle ≈ 9.23, glide configurável)", "purpose": "Física de mola do WakeSlider — barras reagem à velocidade do arraste, não a uma curva de easing fixa." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Toggle Button",
+      "kind": "button",
+      "refersTo": "toggle-button",
+      "description": "Botão icon-only usado para alternar tema (claro/escuro) e idioma (PT/EN) no header.",
+      "html": "<button class=\"ds-toggle-btn\" aria-label=\"Ativar tema claro\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4\"/></svg></button>",
+      "css": ".ds-toggle-btn { display: flex; height: 44px; width: 44px; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid #27272a; color: #a1a1aa; background: transparent; cursor: pointer; transition: background-color 150ms ease; } .ds-toggle-btn:hover { background: #18181b; } .ds-toggle-btn:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }"
+    },
+    {
+      "name": "Tech Badge",
+      "kind": "chip",
+      "refersTo": "tech-badge",
+      "description": "Ícone de tecnologia com tooltip de nome no hover, usado em Projetos e Ferramentas.",
+      "html": "<span class=\"ds-tech-badge\"><img class=\"ds-tech-icon\" src=\"/icons/react.svg\" width=\"28\" height=\"28\" alt=\"React\" /><span class=\"ds-tech-tooltip\">React</span></span>",
+      "css": ".ds-tech-badge { position: relative; display: inline-flex; align-items: center; justify-content: center; } .ds-tech-icon { border-radius: 6px; } .ds-tech-tooltip { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); white-space: nowrap; border-radius: 6px; background: #18181b; color: #f4f4f5; font-size: 12px; padding: 4px 8px; opacity: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: opacity 150ms ease; pointer-events: none; } .ds-tech-badge:hover .ds-tech-tooltip { opacity: 1; }"
+    },
+    {
+      "name": "Experience Card",
+      "kind": "card",
+      "refersTo": "experience-card",
+      "description": "Bloco de experiência profissional: cargo, empresa, período e bullets.",
+      "html": "<div class=\"ds-exp-card\"><div class=\"ds-exp-head\"><div><p class=\"ds-exp-role\">Desenvolvedor Full Stack</p><p class=\"ds-exp-company\">Servfaz</p></div><span class=\"ds-exp-period\">Desde 2024</span></div><ul class=\"ds-exp-list\"><li>Desenvolvimento de APIs REST em AdonisJS.</li></ul></div>",
+      "css": ".ds-exp-card { border: 1px solid #27272a; border-radius: 8px; padding: 20px; color: #f4f4f5; } .ds-exp-head { display: flex; align-items: center; justify-content: space-between; } .ds-exp-role { font-weight: 500; } .ds-exp-company { font-size: 13px; color: #a1a1aa; } .ds-exp-period { font-size: 13px; color: #71717a; } .ds-exp-list { margin-top: 16px; list-style: disc; padding-left: 20px; font-size: 13px; color: #d4d4d8; }"
+    },
+    {
+      "name": "Contribution Heatmap Cell",
+      "kind": "custom",
+      "refersTo": "contribution-cell",
+      "description": "Célula do heatmap de contribuições do GitHub, colorida por nível de atividade (0–4).",
+      "html": "<div class=\"ds-contrib-cell\" data-level=\"2\" title=\"2026-09-28: 5 contribuições\"></div>",
+      "css": ".ds-contrib-cell { height: 12px; width: 12px; border-radius: 2px; background: #27272a; } .ds-contrib-cell[data-level=\"1\"] { background: #14532d; } .ds-contrib-cell[data-level=\"2\"] { background: #15803d; } .ds-contrib-cell[data-level=\"3\"] { background: #16a34a; } .ds-contrib-cell[data-level=\"4\"] { background: #4ade80; }"
+    },
+    {
+      "name": "Music Card (Stack)",
+      "kind": "custom",
+      "refersTo": "music-stack-card",
+      "description": "Cartão arrastável de faixa musical com capa, overlay em gradiente e botão de play/pause.",
+      "html": "<div class=\"ds-music-card\"><img class=\"ds-music-art\" src=\"/artwork.jpg\" alt=\"West\" /><div class=\"ds-music-overlay\"></div><div class=\"ds-music-meta\"><p class=\"ds-music-title\">West</p><p class=\"ds-music-artist\">River Tiber, Daniel Caesar</p></div><button class=\"ds-music-play\" aria-label=\"Reproduzir\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"white\"><path d=\"M8 5v14l11-7z\"/></svg></button></div>",
+      "css": ".ds-music-card { position: relative; height: 100%; width: 100%; border-radius: 8px; overflow: hidden; cursor: grab; } .ds-music-art { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; } .ds-music-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.1) 60%, transparent); } .ds-music-meta { position: absolute; left: 16px; right: 16px; bottom: 16px; } .ds-music-title { color: #fff; font-size: 14px; font-weight: 500; } .ds-music-artist { color: #d4d4d8; font-size: 12px; } .ds-music-play { position: absolute; top: 4px; right: 4px; height: 44px; width: 44px; border-radius: 9999px; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; border: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Terminal",
+    "overview": "Uma página de rolagem única, em coluna centralizada, que se comporta como um devlog pessoal: cinza sobre cinza, bordas finas no lugar de sombra, e um único acento mono-espaçado (JetBrains Mono) reservado para nome e títulos de seção. A paleta é quase inteiramente neutra (escala zinc); cor só aparece como sinal funcional — o azul do selo de verificação e o verde do heatmap de contribuições do GitHub — nunca como decoração. O sistema assume dark mode como estado padrão, com light mode como inversão espelhada, não como tema secundário com identidade própria.\n\nNada nesta interface disputa atenção com o conteúdo técnico. A hierarquia é tipográfica e espacial, não cromática: título mono-espaçado, corpo em Geist Sans, respiro generoso entre seções (64px). O único componente com física própria é o WakeSlider (barras que reagem à velocidade do arraste, com mola e assentamento), e o stack de cartões de música com arrasto e autoplay — assinaturas de craft escondidas dentro de um shell deliberadamente austero.",
+    "keyCharacteristics": [
+      "Monocromático por padrão; cor é sinal, nunca ornamento.",
+      "Sem sombra como sistema de profundidade — bordas finas separam blocos.",
+      "Um único par tipográfico: JetBrains Mono para identidade/títulos, Geist Sans para leitura.",
+      "Layout de coluna única, largura fixa (max-w-3xl), sem grids multi-coluna.",
+      "Dark mode é o estado de origem do produto, não uma variante opcional."
+    ],
+    "rules": [
+      { "name": "The Functional Color Rule", "body": "Cor fora da escala zinc só existe quando carrega significado (verificação, nível de atividade). Nunca introduzir uma cor de marca ou destaque puramente decorativo.", "section": "colors" },
+      { "name": "The Mono-For-Identity Rule", "body": "JetBrains Mono é reservada a nome e títulos de seção — nunca usada em corpo de texto ou rótulos pequenos.", "section": "typography" },
+      { "name": "The Border-Not-Shadow Rule", "body": "Profundidade é comunicada por contraste de borda, nunca por sombra, exceto em popovers efêmeros (tooltips).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do manter a paleta dominante em tons de zinc; introduzir cor nova só quando ela carregar significado funcional.",
+      "Do usar bordas de 1px para separar blocos, nunca sombra, fora do tooltip.",
+      "Do manter JetBrains Mono restrita a nome e títulos de seção.",
+      "Do preservar a coluna única max-w-3xl com gutter de 24px em qualquer seção nova."
+    ],
+    "donts": [
+      "Don't adicionar grid multi-coluna ou layout de largura total.",
+      "Don't introduzir sombras decorativas em cards ou botões.",
+      "Don't substituir o WakeSlider ou o MusicStack por componentes genéricos de UI kit.",
+      "Don't aplicar cor de acento fora dos dois contextos onde já carrega significado."
+    ]
+  }
+}

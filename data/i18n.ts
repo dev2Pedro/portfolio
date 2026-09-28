@@ -25,8 +25,12 @@ interface Translations {
     musicTitle: string
     musicSubtitle: string
     contactTitle: string
+    contactCta: string
+    contactSecondary: string
     viewOnGithub: string
     contributionsFallback: string
+    play: string
+    pause: string
   }
 }
 
@@ -86,8 +90,12 @@ export const translations: Record<Locale, Translations> = {
       musicSubtitle:
         'Música é meu combustível pra focar e programar. Arraste os cards ou deixa rolar sozinho — dá pra ouvir um trecho de cada faixa.',
       contactTitle: 'Fale comigo',
+      contactCta: 'Enviar e-mail',
+      contactSecondary: 'ou conecte-se no LinkedIn',
       viewOnGithub: 'Ver no GitHub',
       contributionsFallback: 'Não foi possível carregar as contribuições agora.',
+      play: 'Reproduzir',
+      pause: 'Pausar',
     },
   },
   en: {
@@ -95,7 +103,7 @@ export const translations: Record<Locale, Translations> = {
       role: 'Full Stack Developer | Back-end | RPA Automation',
       bio: [
         'Full stack developer with solid experience in back-end (REST APIs in AdonisJS, Node.js/Express and Fastify, PostgreSQL/MySQL, Prisma and Lucid ORM) and RPA automation (Python/Selenium) for internal HR and operations processes. I also work with modern front-end using React and Next.js, including mobile app experience with React Native/Expo, and hands-on experience with Flutter and Dart projects.',
-        "I have experience across the full lifecycle of internal systems — from authentication/SSO and audit modules to ERP customization (Odoo) — always focused on clean code, scalable architecture, and deliveries that save operational time.",
+        'I have experience across the full lifecycle of internal systems — from authentication/SSO and audit modules to microservices integration — always focused on clean code, scalable architecture, and deliveries that save operational time.',
       ],
     },
     experience: [
@@ -145,8 +153,12 @@ export const translations: Record<Locale, Translations> = {
       musicSubtitle:
         'Music is my fuel to focus and code. Drag the cards or let it play — you can listen to a preview of each track.',
       contactTitle: 'Get in touch',
+      contactCta: 'Send email',
+      contactSecondary: 'or connect on LinkedIn',
       viewOnGithub: 'View on GitHub',
       contributionsFallback: "Couldn't load contributions right now.",
+      play: 'Play',
+      pause: 'Pause',
     },
   },
 }

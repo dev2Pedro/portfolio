@@ -36,7 +36,7 @@ export default function Tools() {
               key={category.category}
               className="flex flex-col gap-3 border-b border-zinc-200 pb-5 sm:flex-row sm:items-center dark:border-zinc-800"
             >
-              <div className="flex w-44 shrink-0 items-center gap-2 text-sm text-zinc-500">
+              <div className="flex w-44 shrink-0 items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
                 {CategoryIcon && <CategoryIcon size={16} />}
                 {t.tools[i].category}
               </div>

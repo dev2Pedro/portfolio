@@ -1,19 +1,20 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, type PanInfo } from 'motion/react'
+import { motion, useMotionValue, useReducedMotion, useTransform, type PanInfo } from 'motion/react'
 import { useState, useEffect } from 'react'
 
 interface CardRotateProps {
   children: React.ReactNode
   onSendToBack: () => void
   sensitivity: number
+  reduceMotion: boolean
 }
 
-function CardRotate({ children, onSendToBack, sensitivity }: CardRotateProps) {
+function CardRotate({ children, onSendToBack, sensitivity, reduceMotion }: CardRotateProps) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const rotateX = useTransform(y, [-100, 100], [60, -60])
-  const rotateY = useTransform(x, [-100, 100], [-60, 60])
+  const rotateX = useTransform(y, [-100, 100], reduceMotion ? [0, 0] : [60, -60])
+  const rotateY = useTransform(x, [-100, 100], reduceMotion ? [0, 0] : [-60, 60])
 
   function handleDragEnd(
     _event: MouseEvent | TouchEvent | PointerEvent,
@@ -76,19 +77,12 @@ export default function Stack({
     cards.map((content, index) => ({
       id: index + 1,
       content,
-      rotation: 0,
+      rotation: randomRotation ? Math.random() * 10 - 5 : 0,
     }))
 
+  const reduceMotion = !!useReducedMotion()
   const [isPaused, setIsPaused] = useState(false)
   const [stack, setStack] = useState<StackCard[]>(() => buildStack(cards))
-
-  useEffect(() => {
-    if (!randomRotation) return
-    setStack((prev) =>
-      prev.map((card) => ({ ...card, rotation: Math.random() * 10 - 5 })),
-    )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const sendToBack = (id: number) => {
     setStack((prev) => {
@@ -101,7 +95,7 @@ export default function Stack({
   }
 
   useEffect(() => {
-    if (autoplay && stack.length > 1 && !isPaused) {
+    if (autoplay && stack.length > 1 && !isPaused && !reduceMotion) {
       const interval = setInterval(() => {
         const topCardId = stack[stack.length - 1].id
         sendToBack(topCardId)
@@ -109,7 +103,7 @@ export default function Stack({
 
       return () => clearInterval(interval)
     }
-  }, [autoplay, autoplayDelay, stack, isPaused])
+  }, [autoplay, autoplayDelay, stack, isPaused, reduceMotion])
 
   return (
     <div
@@ -119,27 +113,33 @@ export default function Stack({
       onMouseLeave={() => pauseOnHover && setIsPaused(false)}
     >
       {stack.map((card, index) => {
-        const distanceFromTop = Math.min(stack.length - index - 1, VISIBLE_DEPTH)
+        const depthFromTop = stack.length - index - 1
+        if (depthFromTop > VISIBLE_DEPTH) return null
         return (
           <CardRotate
             key={card.id}
             onSendToBack={() => sendToBack(card.id)}
             sensitivity={sensitivity}
+            reduceMotion={reduceMotion}
           >
             <motion.div
               className="rounded-2xl overflow-hidden w-full h-full"
               animate={{
-                rotateZ: distanceFromTop * 4 + card.rotation,
-                scale: 1 - distanceFromTop * 0.06,
-                opacity: stack.length - index - 1 > VISIBLE_DEPTH ? 0 : 1,
+                rotateZ: reduceMotion ? 0 : depthFromTop * 4 + card.rotation,
+                scale: 1 - depthFromTop * 0.06,
+                opacity: 1,
                 transformOrigin: '90% 90%',
               }}
               initial={false}
-              transition={{
-                type: 'spring',
-                stiffness: animationConfig.stiffness,
-                damping: animationConfig.damping,
-              }}
+              transition={
+                reduceMotion
+                  ? { duration: 0.15 }
+                  : {
+                      type: 'spring',
+                      stiffness: animationConfig.stiffness,
+                      damping: animationConfig.damping,
+                    }
+              }
             >
               {card.content}
             </motion.div>

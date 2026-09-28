@@ -26,7 +26,7 @@ export default function ContributionsView({
         {t.sections.contributionsTitle}
       </h2>
       {!data ? (
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
           {t.sections.contributionsFallback}
         </p>
       ) : (

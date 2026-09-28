@@ -41,11 +41,7 @@ export default function Projects() {
                 </div>
               )}
               <div className="flex-1">
-                <p
-                  className={`text-lg text-zinc-600 dark:text-zinc-400 ${
-                    i === projects.length - 1 ? 'truncate' : ''
-                  }`}
-                >
+                <p className="truncate text-lg text-zinc-600 dark:text-zinc-400">
                   {project.name}
                 </p>
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
