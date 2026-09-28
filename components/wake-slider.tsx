@@ -282,7 +282,7 @@ const WakeSlider: React.FC<WakeSliderProps> = ({
         />
       </div>
       {showValue ? (
-        <span className="min-w-[3ch] text-right text-[13px] tabular-nums opacity-60" aria-hidden="true">
+        <span className="min-w-[3ch] text-right text-xs tabular-nums opacity-60" aria-hidden="true">
           {format(value)}
         </span>
       ) : null}
