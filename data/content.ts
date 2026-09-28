@@ -54,12 +54,13 @@ export const experience: ExperienceItem[] = [
     period: 'Desde 2024',
     bullets: [
       'Desenvolvimento de APIs REST em AdonisJS v6 (arquitetura MSC, JWT, validação Zod, Lucid ORM/PostgreSQL) para sistemas internos de RH e operações.',
-      'Criação do módulo de autenticação centralizada (SSO) da empresa, com middleware JWT e refresh token, e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, integração server-to-server entre aplicações).',
-      'Desenvolvimento full stack do sistema interno de gestão de frota e reservas: back-end em Node.js/Express/Prisma com filas (BullMQ/Redis) e upload para AWS S3; front-end em React/TypeScript com dashboards de BI.',
+      'Criação do módulo de autenticação centralizada (SSO) da empresa, com middleware JWT e refresh token, e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, controle de acesso por rota via grupos de permissão, integração server-to-server entre aplicações).',
+      'Desenvolvimento full stack do sistema interno de gestão de frota e reservas: cadastro de veículos por tipo (carros, caminhões e motos) com checklist e vínculo de condutor, reserva de salas, back-end em Node.js/Express/Prisma com filas (BullMQ/Redis) e upload para AWS S3; front-end em React/TypeScript com dashboards de BI.',
+      'Endpoints do Portal do Colaborador e rotina de atualização cadastral obrigatória, com consentimento via WhatsApp, rate limiting e trilha de auditoria.',
       'Desenvolvimento do aplicativo mobile de notificações do sistema Conecta, em React Native + Expo.',
-      'Customização do ERP Odoo 18 (Python): módulo de armazenamento de anexos em S3/MinIO, hotfixes de localização fiscal brasileira e dashboard de KPIs para o CRM.',
-      'Automações RPA em Python/Selenium para portais externos: validação de PIS no FGTS (Caixa), processamento de tickets Edenred TEP, extração de envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial.',
-      'Automações com n8n para geração de relatórios de CRM/ERP.',
+      'Customização do ERP Odoo 18 (Python): regras de negócio do CRM (validação obrigatória por etapa, numeração única de leads, controle de lead time, notificações automáticas por etapa), ACL e grupos de segurança, painel de KPIs com compartilhamento público, módulo de armazenamento de anexos em S3/MinIO, hotfixes de localização fiscal brasileira, testes automatizados e migrations.',
+      'Automações RPA em Python/Selenium para portais externos: validação de PIS no FGTS (Caixa), processamento de tickets Edenred TEP (com interface gráfica, reprocessamento e checkpoint, rodando em Windows e macOS), extração de envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial em lote a partir de planilhas.',
+      'Integração do app Conecta com o Formbricks self-hosted (webhook e emissão de token) para pesquisas de NPS, e automações com n8n para geração de relatórios de CRM/ERP.',
     ],
   },
 ]

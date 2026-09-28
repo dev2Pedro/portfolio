@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-28T18:03:39Z",
+  "generatedAt": "2026-09-28T19:36:51Z",
   "title": "Design System: Pedro Cristóvão — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -57,12 +57,12 @@
       "css": ".ds-tech-badge { position: relative; display: inline-flex; align-items: center; justify-content: center; } .ds-tech-icon { border-radius: 6px; } .ds-tech-tooltip { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); white-space: nowrap; border-radius: 6px; background: #18181b; color: #f4f4f5; font-size: 12px; padding: 4px 8px; opacity: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: opacity 150ms ease; pointer-events: none; } .ds-tech-badge:hover .ds-tech-tooltip { opacity: 1; }"
     },
     {
-      "name": "Experience Card",
-      "kind": "card",
-      "refersTo": "experience-card",
-      "description": "Bloco de experiência profissional: cargo, empresa, período e bullets.",
-      "html": "<div class=\"ds-exp-card\"><div class=\"ds-exp-head\"><div><p class=\"ds-exp-role\">Desenvolvedor Full Stack</p><p class=\"ds-exp-company\">Servfaz</p></div><span class=\"ds-exp-period\">Desde 2024</span></div><ul class=\"ds-exp-list\"><li>Desenvolvimento de APIs REST em AdonisJS.</li></ul></div>",
-      "css": ".ds-exp-card { border: 1px solid #27272a; border-radius: 8px; padding: 20px; color: #f4f4f5; } .ds-exp-head { display: flex; align-items: center; justify-content: space-between; } .ds-exp-role { font-weight: 500; } .ds-exp-company { font-size: 13px; color: #a1a1aa; } .ds-exp-period { font-size: 13px; color: #71717a; } .ds-exp-list { margin-top: 16px; list-style: disc; padding-left: 20px; font-size: 13px; color: #d4d4d8; }"
+      "name": "Experience Accordion",
+      "kind": "custom",
+      "refersTo": "experience-accordion",
+      "description": "Bloco de experiência profissional expansível: cabeçalho sempre visível (ícone, cargo, empresa, período), painel de bullets que abre/fecha.",
+      "html": "<div class=\"ds-exp-card\"><button type=\"button\" class=\"ds-exp-head\" aria-expanded=\"false\"><span class=\"ds-exp-head-left\"><svg class=\"ds-exp-icon\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M4 21V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v14\"/><path d=\"M9 9h1M9 13h1M9 17h1M14 13h1M14 17h1\"/><path d=\"M14 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4\"/></svg><span><p class=\"ds-exp-role\">Desenvolvedor Full Stack</p><p class=\"ds-exp-company\">Servfaz</p></span></span><span class=\"ds-exp-head-right\"><span class=\"ds-exp-period\">Desde 2024</span><svg class=\"ds-exp-chevron\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M6 9l6 6 6-6\"/></svg></span></button><ul class=\"ds-exp-list\"><li>Desenvolvimento de APIs REST em AdonisJS.</li></ul></div>",
+      "css": ".ds-exp-card { background: #18181b; border-radius: 8px; padding: 20px; color: #f4f4f5; } .ds-exp-head { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; background: none; border: none; cursor: pointer; text-align: left; } .ds-exp-head:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; } .ds-exp-head-left { display: flex; align-items: center; gap: 12px; } .ds-exp-icon { color: #a1a1aa; flex-shrink: 0; } .ds-exp-role { font-weight: 500; } .ds-exp-company { font-size: 13px; color: #a1a1aa; } .ds-exp-head-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; } .ds-exp-period { font-size: 13px; color: #71717a; display: flex; align-items: center; gap: 6px; } .ds-exp-chevron { color: #71717a; transition: transform 200ms ease; } .ds-exp-head[aria-expanded=\"true\"] .ds-exp-chevron { transform: rotate(180deg); } .ds-exp-list { margin-top: 16px; list-style: disc; padding-left: 20px; font-size: 13px; color: #d4d4d8; }"
     },
     {
       "name": "Contribution Heatmap Cell",
@@ -94,13 +94,14 @@
     "rules": [
       { "name": "The Functional Color Rule", "body": "Cor fora da escala zinc só existe quando carrega significado (verificação, nível de atividade). Nunca introduzir uma cor de marca ou destaque puramente decorativo.", "section": "colors" },
       { "name": "The Mono-For-Identity Rule", "body": "JetBrains Mono é reservada a nome e títulos de seção — nunca usada em corpo de texto ou rótulos pequenos.", "section": "typography" },
-      { "name": "The Border-Not-Shadow Rule", "body": "Profundidade é comunicada por contraste de borda, nunca por sombra, exceto em popovers efêmeros (tooltips).", "section": "elevation" }
+      { "name": "The Border-Not-Shadow Rule", "body": "Profundidade é comunicada por contraste de borda, nunca por sombra, exceto em popovers efêmeros (tooltips). Exceção única: o Experience Accordion usa preenchimento sólido em vez de borda.", "section": "elevation" }
     ],
     "dos": [
       "Do manter a paleta dominante em tons de zinc; introduzir cor nova só quando ela carregar significado funcional.",
       "Do usar bordas de 1px para separar blocos, nunca sombra, fora do tooltip.",
       "Do manter JetBrains Mono restrita a nome e títulos de seção.",
-      "Do preservar a coluna única max-w-3xl com gutter de 24px em qualquer seção nova."
+      "Do preservar a coluna única max-w-3xl com gutter de 24px em qualquer seção nova.",
+      "Do manter o preenchimento sólido do Experience Accordion como exceção única — não propagar sem nova decisão explícita."
     ],
     "donts": [
       "Don't adicionar grid multi-coluna ou layout de largura total.",

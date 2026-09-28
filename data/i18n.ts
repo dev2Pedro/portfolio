@@ -31,6 +31,8 @@ interface Translations {
     contributionsFallback: string
     play: string
     pause: string
+    showMore: string
+    showLess: string
   }
 }
 
@@ -49,12 +51,13 @@ export const translations: Record<Locale, Translations> = {
         period: 'Desde 2024',
         bullets: [
           'Desenvolvimento de APIs REST em AdonisJS v6 (arquitetura MSC, JWT, validação Zod, Lucid ORM/PostgreSQL) para sistemas internos de RH e operações.',
-          'Criação do módulo de autenticação centralizada (SSO) da empresa, com middleware JWT e refresh token, e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, integração server-to-server entre aplicações).',
-          'Desenvolvimento full stack do sistema interno de gestão de frota e reservas: back-end em Node.js/Express/Prisma com filas (BullMQ/Redis) e upload para AWS S3; front-end em React/TypeScript com dashboards de BI.',
+          'Criação do módulo de autenticação centralizada (SSO) da empresa, com middleware JWT e refresh token, e liderança do módulo de auditoria/logs (ingestão, filtros, exportação CSV, controle de acesso por rota via grupos de permissão, integração server-to-server entre aplicações).',
+          'Desenvolvimento full stack do sistema interno de gestão de frota e reservas: cadastro de veículos por tipo (carros, caminhões e motos) com checklist e vínculo de condutor, reserva de salas, back-end em Node.js/Express/Prisma com filas (BullMQ/Redis) e upload para AWS S3; front-end em React/TypeScript com dashboards de BI.',
+          'Endpoints do Portal do Colaborador e rotina de atualização cadastral obrigatória, com consentimento via WhatsApp, rate limiting e trilha de auditoria.',
           'Desenvolvimento do aplicativo mobile de notificações do sistema Conecta, em React Native + Expo.',
-          'Customização do ERP Odoo 18 (Python): módulo de armazenamento de anexos em S3/MinIO, hotfixes de localização fiscal brasileira e dashboard de KPIs para o CRM.',
-          'Automações RPA em Python/Selenium para portais externos: validação de PIS no FGTS (Caixa), processamento de tickets Edenred TEP, extração de envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial.',
-          'Automações com n8n para geração de relatórios de CRM/ERP.',
+          'Customização do ERP Odoo 18 (Python): regras de negócio do CRM (validação obrigatória por etapa, numeração única de leads, controle de lead time, notificações automáticas por etapa), ACL e grupos de segurança, painel de KPIs com compartilhamento público, módulo de armazenamento de anexos em S3/MinIO, hotfixes de localização fiscal brasileira, testes automatizados e migrations.',
+          'Automações RPA em Python/Selenium para portais externos: validação de PIS no FGTS (Caixa), processamento de tickets Edenred TEP (com interface gráfica, reprocessamento e checkpoint, rodando em Windows e macOS), extração de envelopes assinados (Unico) e relatórios de admissão/demissão via eSocial em lote a partir de planilhas.',
+          'Integração do app Conecta com o Formbricks self-hosted (webhook e emissão de token) para pesquisas de NPS, e automações com n8n para geração de relatórios de CRM/ERP.',
         ],
       },
     ],
@@ -96,6 +99,8 @@ export const translations: Record<Locale, Translations> = {
       contributionsFallback: 'Não foi possível carregar as contribuições agora.',
       play: 'Reproduzir',
       pause: 'Pausar',
+      showMore: 'Mostrar mais',
+      showLess: 'Mostrar menos',
     },
   },
   en: {
@@ -112,12 +117,13 @@ export const translations: Record<Locale, Translations> = {
         period: 'Since 2024',
         bullets: [
           'Development of REST APIs in AdonisJS v6 (MSC architecture, JWT, Zod validation, Lucid ORM/PostgreSQL) for internal HR and operations systems.',
-          "Creation of the company's centralized authentication module (SSO), with JWT middleware and refresh tokens, and leadership of the audit/logging module (ingestion, filters, CSV export, server-to-server integration between applications).",
-          'Full stack development of the internal fleet and reservation management system: back-end in Node.js/Express/Prisma with queues (BullMQ/Redis) and AWS S3 upload; front-end in React/TypeScript with BI dashboards.',
+          "Creation of the company's centralized authentication module (SSO), with JWT middleware and refresh tokens, and leadership of the audit/logging module (ingestion, filters, CSV export, route-level access control via permission groups, server-to-server integration between applications).",
+          'Full stack development of the internal fleet and reservation management system: vehicle registration by type (cars, trucks, and motorcycles) with checklists and driver assignment, room booking, back-end in Node.js/Express/Prisma with queues (BullMQ/Redis) and AWS S3 upload; front-end in React/TypeScript with BI dashboards.',
+          'Employee Portal endpoints and the mandatory profile-update flow, with WhatsApp consent, rate limiting, and an audit trail.',
           "Development of the Conecta system's mobile notification app, in React Native + Expo.",
-          'Odoo 18 ERP customization (Python): attachment storage module in S3/MinIO, Brazilian fiscal localization hotfixes, and a KPI dashboard for the CRM.',
-          'RPA automations in Python/Selenium for external portals: PIS validation on FGTS (Caixa), Edenred TEP ticket processing, signed envelope extraction (Unico), and admission/termination reports via eSocial.',
-          'Automations with n8n for CRM/ERP report generation.',
+          'Odoo 18 ERP customization (Python): CRM business rules (stage-gated required fields, unique lead numbering, lead-time control, automatic notifications), ACL and security groups, a publicly shareable KPI dashboard, an S3/MinIO attachment storage module, Brazilian fiscal localization hotfixes, automated tests, and migrations.',
+          'RPA automations in Python/Selenium for external portals: PIS validation on FGTS (Caixa), Edenred TEP ticket processing (with a GUI, reprocessing, and checkpointing, running on Windows and macOS), signed envelope extraction (Unico), and batch admission/termination reports via eSocial from spreadsheets.',
+          'Integrated the Conecta app with self-hosted Formbricks (webhook and token issuance) for in-app NPS surveys, plus n8n automations for CRM/ERP report generation.',
         ],
       },
     ],
@@ -159,6 +165,8 @@ export const translations: Record<Locale, Translations> = {
       contributionsFallback: "Couldn't load contributions right now.",
       play: 'Play',
       pause: 'Pause',
+      showMore: 'Show more',
+      showLess: 'Show less',
     },
   },
 }

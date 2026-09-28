@@ -67,8 +67,8 @@ components:
     backgroundColor: "transparent"
     rounded: "{rounded.md}"
     size: "28px"
-  experience-card:
-    backgroundColor: "transparent"
+  experience-accordion:
+    backgroundColor: "{colors.ink-deep}"
     rounded: "{rounded.lg}"
     padding: "20px"
 ---
@@ -103,8 +103,8 @@ Paleta quase monocromática (escala zinc), com dois acentos estritamente funcion
 - **Contribution Green** (`#86efac` → `#15803d`, 4 tons + `#e4e4e7` neutro): escala sequencial do heatmap de contribuições do GitHub, mapeada por nível de atividade (0 a 4). Uso exclusivo desse componente.
 
 ### Neutral
-- **Ink** (`#f4f4f5`, zinc-100): texto principal e títulos no modo escuro.
-- **Ink Deep** (`#18181b`, zinc-900): texto principal e títulos no modo claro.
+- **Ink** (`#f4f4f5`, zinc-100): texto principal e títulos no modo escuro; também o fundo preenchido do `Experience Accordion` no modo claro (única superfície com preenchimento do sistema — ver exceção em Elevation & Depth).
+- **Ink Deep** (`#18181b`, zinc-900): texto principal e títulos no modo claro; também o fundo preenchido do `Experience Accordion` no modo escuro.
 - **Mist 200** (`#e4e4e7`, zinc-200): bordas e divisores no modo claro.
 - **Mist 800** (`#27272a`, zinc-800): bordas e divisores no modo escuro; também `trackColor` do WakeSlider no escuro.
 - **Fog 500** (`#71717a`, zinc-500): texto terciário/labels de baixa ênfase em ambos os temas (datas, legendas).
@@ -138,13 +138,15 @@ Coluna única centralizada, `max-w-3xl` (768px), com gutter lateral fixo de 24px
 
 ## Elevation & Depth
 
-Sistema flat por padrão — nenhuma sombra é usada para separar blocos; a separação vem inteiramente de bordas finas (`border-zinc-200` no claro, `border-zinc-800` no escuro). A única exceção é funcional, não decorativa: o tooltip do `TechBadge` usa `shadow-md` para se destacar como um popover flutuante acima do conteúdo.
+Sistema flat por padrão — nenhuma sombra é usada para separar blocos; a separação vem inteiramente de bordas finas (`border-zinc-200` no claro, `border-zinc-800` no escuro). A única exceção de sombra é funcional, não decorativa: o tooltip do `TechBadge` usa `shadow-md` para se destacar como um popover flutuante acima do conteúdo.
+
+Existe uma segunda exceção, de preenchimento: o `Experience Accordion` (`components/experience.tsx`) usa fundo sólido (`bg-zinc-100`/`dark:bg-zinc-900`) em vez de borda — decisão explícita do usuário pra dar peso visual ao único componente interativo/expansível do sistema. É uma exceção documentada, não uma mudança silenciosa da regra geral: todo outro card (Projects, Experience antes deste componente) continua transparente+borda.
 
 ### Shadow Vocabulary
 - **Tooltip popover** (`box-shadow` via utilitário `shadow-md`): exclusivo do tooltip de nome de tecnologia no hover do `TechBadge`.
 
 ### Named Rules
-**The Border-Not-Shadow Rule.** Profundidade é comunicada por contraste de borda, nunca por sombra, exceto em popovers efêmeros (tooltips).
+**The Border-Not-Shadow Rule.** Profundidade é comunicada por contraste de borda, nunca por sombra, exceto em popovers efêmeros (tooltips). **Exceção única:** o `Experience Accordion` usa preenchimento sólido em vez de borda — ver acima.
 
 ## Shapes
 
@@ -163,12 +165,20 @@ Cantos suavemente arredondados em quase tudo, sem geometria angular. Escala de r
 - **Estilo:** ícone SVG 28px (32px em Ferramentas) sem fundo; nome do item aparece só como fallback textual quando não há ícone mapeado.
 - **State:** hover revela tooltip (nome completo) acima do ícone, fundo invertido (`zinc-900` claro / `zinc-100` escuro), com sombra (única exceção de elevação do sistema).
 
-### Cards / Containers
+### Cards / Containers (Projects)
 - **Corner Style:** raio `lg` (8px).
 - **Background:** transparente (sem preenchimento próprio); quando um projeto não tem imagem, usa gradiente diagonal `zinc-200→300` (claro) / `zinc-800→900` (escuro) como placeholder.
 - **Shadow Strategy:** nenhuma — ver Elevation & Depth.
-- **Border:** 1px `zinc-200`/`zinc-800` (card de experiência); imagens de projeto também levam borda 1px.
-- **Internal Padding:** 20px (card de experiência).
+- **Border:** 1px `zinc-200`/`zinc-800`; imagens de projeto também levam borda 1px.
+
+### Experience Accordion
+- **Corner Style:** raio `lg` (8px).
+- **Background:** preenchido — `bg-zinc-100` (claro) / `bg-zinc-900` (escuro), sem borda (exceção única de elevação — ver Elevation & Depth).
+- **Internal Padding:** 20px.
+- **Cabeçalho:** sempre visível — ícone genérico (`Building2`, `lucide-react`, `fog-500`/`ash-400`, 20px) + cargo (`font-medium`) + empresa (`text-sm`, `smoke-600`/`ash-400`) à esquerda; período com ícone `Calendar` + botão de chevron (`ChevronDown`, gira 180° quando aberto) à direita.
+- **Toggle:** todo o cabeçalho é um único `<button>` (não só o chevron) — alvo de toque muito acima de 44×44px, `aria-expanded`, `aria-controls`, `aria-label` descritivo (cargo + empresa + estado), `focus-visible` com anel `verified-blue`.
+- **Painel:** expande/recolhe com `motion/react` (`AnimatePresence` + altura/opacidade animadas), pulando a animação sob `prefers-reduced-motion` — mesmo padrão do `Stack`. Fechado por padrão.
+- **Estado:** só um item aberto por vez (comportamento padrão de accordion) — hoje irrelevante com 1 item só, mas já preparado pra múltiplas experiências.
 
 ### Navigation
 Não há barra de navegação — o header concentra identidade (avatar, nome, selo, cargo, bio) e os três links sociais (GitHub, LinkedIn, e-mail) como ícones inline com hover de cor, mais os toggles de tema/idioma alinhados à direita.
@@ -188,6 +198,7 @@ Pilha de cartões arrastável (`Stack`) com autoplay e rotação aleatória suti
 - **Do** preservar a coluna única `max-w-3xl` com gutter de 24px em qualquer seção nova.
 - **Do** manter todo alvo de toque interativo em pelo menos 44×44px, mesmo quando o ícone visual é menor.
 - **Do** dar um substituto visível de foco (`focus-visible`) sempre que remover o `outline` padrão do navegador.
+- **Do** manter o preenchimento sólido do `Experience Accordion` como exceção única — não propagar esse estilo pra outros cards sem uma decisão explícita nova.
 
 ### Don't:
 - **Don't** adicionar grid multi-coluna ou layout de largura total — quebra o ritmo editorial de coluna única.
