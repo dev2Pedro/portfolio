@@ -77,7 +77,7 @@ export const projects: ProjectItem[] = [
     description: 'Sistema de apadrinhamento natalino de idosos, em parceria com a turma de Psicologia da Unisociesc-Blumenau. Área administrativa autenticada, back-end em Fastify/Prisma/PostgreSQL (Supabase).',
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Fastify', 'PostgreSQL'],
     url: 'https://github.com/dev2Pedro/christmas-front',
-    image: '/projects/christmas-elderly.png',
+    image: '/projects/christmas-elderly-v2.png',
   },
   {
     name: 'Automações eSocial/FGTS/Edenred/Unico',
